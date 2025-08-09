@@ -1,162 +1,157 @@
-// Initialize EmailJS
-(function() {
-    emailjs.init("yQ-tQM07Gi7DWxUZr"); // Replace with your EmailJS user ID
-})();
+// Initialize EmailJS when available
+if (typeof emailjs !== 'undefined') {
+    (function() {
+        emailjs.init("yQ-tQM07Gi7DWxUZr"); // Replace with your EmailJS user ID if needed
+    })();
+}
 
-// Particle.js Configuration
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize page loader
-    const spinnerContainer = document.createElement('div');
-    spinnerContainer.className = 'spinner-container';
-    const spinner = document.createElement('div');
-    spinner.className = 'spinner';
-    const spinnerText = document.createElement('div');
-    spinnerText.className = 'spinner-text';
-    spinnerText.textContent = 'Loading';
-    
-    spinner.appendChild(spinnerText);
-    spinnerContainer.appendChild(spinner);
-    document.body.appendChild(spinnerContainer);
-    
-    // Add noise texture overlay
+document.addEventListener('DOMContentLoaded', function() {
+    // Add noise texture overlay for visual effect
     const noiseOverlay = document.createElement('div');
     noiseOverlay.className = 'noise-overlay';
     document.body.appendChild(noiseOverlay);
     
-    // Add custom cursor (desktop only)
-    if (window.innerWidth > 768) {
-        const cursorDot = document.createElement('div');
-        cursorDot.className = 'cursor-dot';
-        const cursorOutline = document.createElement('div');
-        cursorOutline.className = 'cursor-outline';
-        document.body.appendChild(cursorDot);
-        document.body.appendChild(cursorOutline);
-        
-        document.addEventListener('mousemove', (e) => {
-            cursorDot.style.left = `${e.clientX}px`;
-            cursorDot.style.top = `${e.clientY}px`;
-            
-            // Add slight delay to outline for smooth effect
-            setTimeout(() => {
-                cursorOutline.style.left = `${e.clientX}px`;
-                cursorOutline.style.top = `${e.clientY}px`;
-            }, 50);
+    // Configure particles.js
+    if (typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: ['#00eeff', '#be2edd', '#00ff9d']
+                },
+                shape: {
+                    type: 'circle',
+                    stroke: {
+                        width: 0,
+                        color: '#000000'
+                    },
+                    polygon: {
+                        nb_sides: 5
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 2,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#00eeff',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: 'none',
+                    random: true,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'grab'
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push'
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 140,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    push: {
+                        particles_nb: 4
+                    }
+                }
+            },
+            retina_detect: true
         });
     }
     
-    // Add last login badge with updated information
-    const loginBadge = document.createElement('div');
-    loginBadge.className = 'login-badge';
-    loginBadge.innerHTML = `Welcome back, <span>Bharat27-d</span> <span class="login-time">2025-08-09 05:46:05</span>`;
-    document.body.appendChild(loginBadge);
-    
-    // Configure particles.js
-    particlesJS('particles-js', {
-        particles: {
-            number: {
-                value: 80,
-                density: {
-                    enable: true,
-                    value_area: 800
-                }
-            },
-            color: {
-                value: ['#00eeff', '#be2edd', '#00ff9d']
-            },
-            shape: {
-                type: 'circle',
-                stroke: {
-                    width: 0,
-                    color: '#000000'
-                },
-                polygon: {
-                    nb_sides: 5
-                }
-            },
-            opacity: {
-                value: 0.5,
-                random: true,
-                anim: {
-                    enable: true,
-                    speed: 1,
-                    opacity_min: 0.1,
-                    sync: false
-                }
-            },
-            size: {
-                value: 3,
-                random: true,
-                anim: {
-                    enable: true,
-                    speed: 2,
-                    size_min: 0.1,
-                    sync: false
-                }
-            },
-            line_linked: {
-                enable: true,
-                distance: 150,
-                color: '#00eeff',
-                opacity: 0.4,
-                width: 1
-            },
-            move: {
-                enable: true,
-                speed: 1,
-                direction: 'none',
-                random: true,
-                straight: false,
-                out_mode: 'out',
-                bounce: false,
-                attract: {
-                    enable: false,
-                    rotateX: 600,
-                    rotateY: 1200
-                }
-            }
-        },
-        interactivity: {
-            detect_on: 'canvas',
-            events: {
-                onhover: {
-                    enable: true,
-                    mode: 'grab'
-                },
-                onclick: {
-                    enable: true,
-                    mode: 'push'
-                },
-                resize: true
-            },
-            modes: {
-                grab: {
-                    distance: 140,
-                    line_linked: {
-                        opacity: 1
-                    }
-                },
-                push: {
-                    particles_nb: 4
-                }
-            }
-        },
-        retina_detect: true
-    });
-    
-    // Hide loader after everything is loaded
-    window.addEventListener('load', () => {
+    // Add fade-in animation to sections when loaded
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section, index) => {
         setTimeout(() => {
-            spinnerContainer.classList.add('hide-spinner');
-            
-            // Add fade-in animation to sections
-            const sections = document.querySelectorAll('section');
-            sections.forEach((section, index) => {
-                setTimeout(() => {
-                    section.classList.add('fade-in-up');
-                }, 300 + (index * 100));
-            });
-        }, 1500);
+            section.classList.add('fade-in-up');
+        }, 300 + (index * 100));
     });
+    
+    // Mobile Menu Toggle with improved handling
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navMenu = document.querySelector('.nav-menu');
+    const body = document.body;
+    
+    if (mobileMenu && navMenu) {
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            
+            // Prevent background scrolling when menu is open
+            if (navMenu.classList.contains('active')) {
+                body.classList.add('menu-open');
+            } else {
+                body.classList.remove('menu-open');
+            }
+        });
+        
+        // Close mobile menu when clicking on nav links
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (navMenu.classList.contains('active') && 
+                !navMenu.contains(e.target) && 
+                !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
+            }
+        });
+    }
 });
 
 // Navbar Scroll Effect
@@ -166,58 +161,11 @@ const backToTop = document.getElementById('backToTop');
 window.addEventListener('scroll', () => {
     if (window.scrollY > 100) {
         header.classList.add('scrolled');
-        backToTop.classList.add('active');
+        if (backToTop) backToTop.classList.add('active');
     } else {
         header.classList.remove('scrolled');
-        backToTop.classList.remove('active');
+        if (backToTop) backToTop.classList.remove('active');
     }
-});
-
-// Theme Switcher
-const addThemeSwitcher = () => {
-    const themeSwitch = document.createElement('div');
-    themeSwitch.className = 'theme-switch';
-    themeSwitch.innerHTML = '<i class="fas fa-moon"></i>';
-    document.body.appendChild(themeSwitch);
-    
-    themeSwitch.addEventListener('click', () => {
-        document.documentElement.classList.toggle('light-theme');
-        
-        if (document.documentElement.classList.contains('light-theme')) {
-            themeSwitch.innerHTML = '<i class="fas fa-sun"></i>';
-            localStorage.setItem('theme', 'light');
-        } else {
-            themeSwitch.innerHTML = '<i class="fas fa-moon"></i>';
-            localStorage.setItem('theme', 'dark');
-        }
-    });
-    
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-        document.documentElement.classList.add('light-theme');
-        themeSwitch.innerHTML = '<i class="fas fa-sun"></i>';
-    }
-};
-
-// Call theme switcher function
-addThemeSwitcher();
-
-// Mobile Menu Toggle
-const mobileMenu = document.getElementById('mobile-menu');
-const navMenu = document.querySelector('.nav-menu');
-
-mobileMenu.addEventListener('click', () => {
-    mobileMenu.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
-
-// Close mobile menu when clicking on a nav link
-document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        navMenu.classList.remove('active');
-    });
 });
 
 // Active Navigation Link on Scroll
@@ -254,6 +202,8 @@ let isDeleting = false;
 let typeSpeed = 100;
 
 function typeWriter() {
+    if (!typewriterElement) return;
+    
     const currentPhrase = phrases[phraseIndex];
     
     if (isDeleting) {
@@ -279,9 +229,7 @@ function typeWriter() {
 }
 
 // Start the typewriter effect
-window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(typeWriter, 1000);
-});
+setTimeout(typeWriter, 1000);
 
 // Portfolio Filtering
 const filterBtns = document.querySelectorAll('.filter-btn');
@@ -304,11 +252,11 @@ filterBtns.forEach(btn => {
                 item.style.display = 'block';
                 setTimeout(() => {
                     item.style.opacity = '1';
-                    item.style.transform = 'scale(1)';
+                    item.style.transform = 'translateY(-10px)';
                 }, 200);
             } else {
                 item.style.opacity = '0';
-                item.style.transform = 'scale(0.8)';
+                item.style.transform = 'translateY(10px)';
                 setTimeout(() => {
                     item.style.display = 'none';
                 }, 500);
@@ -325,52 +273,59 @@ const nextBtn = document.getElementById('next');
 let currentTestimonial = 0;
 
 function showTestimonial(index) {
+    if (!testimonialContainer) return;
+    
     testimonialContainer.style.transform = `translateX(-${index * 100}%)`;
     
     // Update active dot
     dots.forEach(dot => dot.classList.remove('active'));
-    dots[index].classList.add('active');
+    if (dots[index]) dots[index].classList.add('active');
     
     currentTestimonial = index;
 }
 
-// Next button click
-nextBtn.addEventListener('click', () => {
-    currentTestimonial = (currentTestimonial + 1) % dots.length;
-    showTestimonial(currentTestimonial);
-});
-
-// Prev button click
-prevBtn.addEventListener('click', () => {
-    currentTestimonial = (currentTestimonial - 1 + dots.length) % dots.length;
-    showTestimonial(currentTestimonial);
-});
-
-// Dot clicks
-dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        showTestimonial(index);
+// Initialize testimonial controls
+if (prevBtn && nextBtn) {
+    // Next button click
+    nextBtn.addEventListener('click', () => {
+        currentTestimonial = (currentTestimonial + 1) % dots.length;
+        showTestimonial(currentTestimonial);
     });
-});
-
-// Auto slide testimonials every 6 seconds
-let testimonialInterval = setInterval(() => {
-    currentTestimonial = (currentTestimonial + 1) % dots.length;
-    showTestimonial(currentTestimonial);
-}, 6000);
-
-// Pause auto-slide on hover
-testimonialContainer.addEventListener('mouseenter', () => {
-    clearInterval(testimonialInterval);
-});
-
-// Resume auto-slide after hover
-testimonialContainer.addEventListener('mouseleave', () => {
-    testimonialInterval = setInterval(() => {
+    
+    // Prev button click
+    prevBtn.addEventListener('click', () => {
+        currentTestimonial = (currentTestimonial - 1 + dots.length) % dots.length;
+        showTestimonial(currentTestimonial);
+    });
+    
+    // Dot clicks
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showTestimonial(index);
+        });
+    });
+    
+    // Auto slide testimonials every 6 seconds
+    let testimonialInterval = setInterval(() => {
         currentTestimonial = (currentTestimonial + 1) % dots.length;
         showTestimonial(currentTestimonial);
     }, 6000);
-});
+    
+    // Pause auto-slide on hover
+    if (testimonialContainer) {
+        testimonialContainer.addEventListener('mouseenter', () => {
+            clearInterval(testimonialInterval);
+        });
+        
+        // Resume auto-slide after hover
+        testimonialContainer.addEventListener('mouseleave', () => {
+            testimonialInterval = setInterval(() => {
+                currentTestimonial = (currentTestimonial + 1) % dots.length;
+                showTestimonial(currentTestimonial);
+            }, 6000);
+        });
+    }
+}
 
 // Contact form submission with EmailJS
 const contactForm = document.getElementById('contactForm');
@@ -389,9 +344,7 @@ if (contactForm) {
             name: document.getElementById('name').value,
             email: document.getElementById('email').value,
             subject: document.getElementById('subject').value,
-            message: document.getElementById('message').value,
-            date: "2025-08-09 05:46:05", // Current date and time
-            user: "Bharat27-d" // Current user
+            message: document.getElementById('message').value
         };
 
         // Send email using EmailJS
@@ -436,69 +389,6 @@ if (contactForm) {
             });
     });
 }
-
-// Scroll Animation
-const animateOnScroll = () => {
-    const elements = document.querySelectorAll('.service-card, .portfolio-item, .about-image, .skill-bar, .tech-icon');
-    
-    elements.forEach(element => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        
-        if (elementPosition < windowHeight - 100) {
-            element.classList.add('fade-in');
-        }
-    });
-};
-
-// Add scroll animations
-document.addEventListener('DOMContentLoaded', () => {
-    // Add the CSS for fade-in animation
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-        
-        .service-card, .portfolio-item, .about-image, .skill-bar, .tech-icon {
-            opacity: 0;
-        }
-
-        .success-message {
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        .success-message i {
-            font-size: 4rem;
-            color: #00eeff;
-            margin-bottom: 1rem;
-        }
-        
-        .success-message h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-        
-        .error-message {
-            color: #ff3864;
-            font-size: 0.85rem;
-            margin-top: 5px;
-        }
-    `;
-    document.head.appendChild(style);
-    
-    // Initial check for elements in viewport
-    animateOnScroll();
-    
-    // Add scroll event listener
-    window.addEventListener('scroll', animateOnScroll);
-});
 
 // Add smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
